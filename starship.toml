@@ -1,0 +1,45 @@
+add_newline = false
+
+format = "${python}$time$directory$git_branch$git_status$character"
+
+[directory]
+style = "cyan"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+style = "purple"
+
+[git_status]
+style = "yellow"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+[hostname]
+ssh_only = true
+style = "bold yellow"
+
+[username]
+show_always = false
+style_user = "blue"
+
+[time]
+disabled = false
+format = "[$time]($style) "
+time_format = "%R"
+
+[status]
+disabled = false
+style = "red"
+
+[os]
+disabled = false
+style = "bold white"
+
+[python]
+format = 'via [${symbol}${version}](bold green) [(\($virtualenv\))](bold yellow) '
+style = "bold green"
+symbol = " "
