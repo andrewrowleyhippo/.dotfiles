@@ -12,7 +12,7 @@ background-blur-radius = 40
 bold-is-bright = true
 minimum-contrast = 3
 font-family = VictorMono NFM
-font-size = 14
+font-size = 10
 
 # cursor
 cursor-color = #C276FF
