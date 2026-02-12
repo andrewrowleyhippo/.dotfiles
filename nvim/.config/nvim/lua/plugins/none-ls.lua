@@ -1,3 +1,4 @@
+-- NONE-LS, replaces null-ls and supports formatting code
 return {
 	{
 		"nvimtools/none-ls.nvim",
