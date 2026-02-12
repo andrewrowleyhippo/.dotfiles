@@ -6,7 +6,7 @@ return {
 			-- Nvim-tree setup
 			require("nvim-tree").setup({
 				-- view = { width = 50, side = "left" },
-                view = { adaptive_size = true },
+                view = { width = 50, side = left, adaptive_size = true },
 				git = { enable = true },
 			})
 		end,
