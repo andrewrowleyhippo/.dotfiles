@@ -1,7 +1,7 @@
 -- MASON, LSP-CONFIG and others, for LSP features
 return {
   {
-    "williamboman/mason.nvim", -- basic mason
+    "williamboman/mason.nvim", -- basic mason, installs LSPs
     config = function()
       require("mason").setup()
     end,
@@ -51,12 +51,12 @@ return {
         -- python
         lspconfig.pyright.setup({})
         lspconfig.ruff.setup({})
-            
+
         -- keymaps
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-        vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {}) -- get docs
+        vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {}) -- get defns
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {}) -- code actions
+        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {}) -- ???
 
     end,
     },
