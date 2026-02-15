@@ -1,64 +1,64 @@
 -- MASON, LSP-CONFIG and others, for LSP features
 return {
-  {
-    "williamboman/mason.nvim", -- basic mason, installs LSPs
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim", -- mason LSP configuration
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls", --lua
-          "bashls", --bash
-          "pyright", --python
-          "ruff", -- also python
-        },
-      })
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig", -- to config nvim to use language servers
-    config = function()
+	{
+		"williamboman/mason.nvim", -- basic mason, installs LSPs
+		config = function()
+			require("mason").setup()
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim", -- mason LSP configuration
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls", --lua
+					"bashls", --bash
+					"pyright", --python
+					"ruff", -- also python
+				},
+			})
+		end,
+	},
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
 
-        local lspconfig = require("lspconfig")
-
-        -- lua
-        lspconfig.lua_ls.setup({
+        -- Lua
+        vim.lsp.config("lua_ls", {
           settings = {
             Lua = {
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                checkThirdParty = false,
-              },
+              diagnostics = { globals = { "vim" } },
+              workspace = { checkThirdParty = false },
             },
           },
         })
 
-        -- bash
-        lspconfig.bashls.setup({
+        -- Bash
+        vim.lsp.config("bashls", {
           settings = {
-            bashIde = {
-              shellcheckPath = "shellcheck",
-            },
+            bashIde = { shellcheckPath = "shellcheck" },
           },
         })
 
-        -- python
-        lspconfig.pyright.setup({})
-        lspconfig.ruff.setup({})
+        -- Python
+        vim.lsp.config("pyright", {})
+        vim.lsp.config("ruff", {})
 
-        -- keymaps
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {}) -- get docs
-        vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {}) -- get defns
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {}) -- code actions
-        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {}) -- ???
+        -- Enable servers
+        vim.lsp.enable("lua_ls")
+        vim.lsp.enable("bashls")
+        vim.lsp.enable("pyright")
+        vim.lsp.enable("ruff")
 
-    end,
-    },
+        -- Keymaps
+        local opts = { noremap = true, silent = true }
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts) -- get definition
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) -- code actions
+        vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts) -- format the file
+      end,
+    }
 }
+
+
 
