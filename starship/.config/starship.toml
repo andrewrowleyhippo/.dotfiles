@@ -1,15 +1,12 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-add_newline = false
+add_newline = true 
 
 format = """
-[░▒▓](#a3aed2)
-[](bg:#769ff0 fg:#a3aed2)\
 ${python}\
 $time\
 $directory\
 $git_branch\
 $git_status
-[](bg:#769ff0 fg:#a3aed2)\
 \n$character"""
 
 [directory]
