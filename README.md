@@ -2,8 +2,13 @@
 # My Dotfiles
 ## A selection of tools organised poorly
 
-
 This repo contains the dotfiles I regularly use in development, with support via GNU Stow. With Stow, simply one can clone this repo and plug and play all these configs. In theory.
+
+## Run...
+
+| git clone <repo> ~/dotfiles
+| cd ~/dotfiles
+| stow --adopt *
 
 ## Current toolkit
 

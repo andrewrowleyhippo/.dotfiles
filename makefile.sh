@@ -1,3 +1,8 @@
-#!/usr/bin/env bash
+install:
+	stow tmux starship zsh
 
-stow zsh git nvim tmux
+minimal:
+	stow zsh git
+
+dev:
+	stow tmux starship zsh nvim
