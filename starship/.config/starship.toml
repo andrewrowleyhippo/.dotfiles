@@ -1,30 +1,62 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+
+# --- MAIN ---
+
 add_newline = true 
 
 format = """
-${python}\
-$time\
+$os\
+$username\
+$hostname\
 $directory\
 $git_branch\
-$git_status
+$git_status\
+$python\
+$rust\
+$docker_context\
+$time\
+$battery\
+$status
 \n$character"""
 
+# --- Directory ---
+
 [directory]
-style = "cyan"
-format = "[ $path ]($style)"
+style = "bold cyan"
+format = "[📁 $path]($style) "
 truncation_length = 3
 truncation_symbol = "…/"
+
+# --- Git ---
 
 [git_branch]
 symbol = " "
 style = "purple"
+# format = "[$symbol$branch]($style) "
 
 [git_status]
 style = "yellow"
+format = "([$all_status$ahead_behind]($style)) "
+
+# --- Prompt char ---
 
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
+
+# --- Host + User ---
+
+[os]
+disabled = false
+format = "[$symbol]($style) "
+
+[os.symbols]
+Ubuntu = " 🐧" # " "
+Debian = " 🌀" # " "
+Arch =  " 🗿" # " "
+Macos =  " 🍏" # " "
+Windows =  " 🪟" # " "
+Unknown =  " 👾" # " ?"
 
 [hostname]
 ssh_only = true
@@ -35,20 +67,59 @@ show_always = true
 style_user = "blue"
 format = '[ $user ]($style)'
 
+# --- Time + Status ---
+
 [time]
 disabled = false
-format = "[$time]($style) "
-time_format = "%R"
+format = "[🕒 $time]($style) "
+time_format = "%H:%M:%S"
+style = "dimmed white"
 
 [status]
 disabled = false
-style = "red"
+style = "bold red"
+format = "[✖ $status]($style) "
 
-[os]
-disabled = false
-style = "bold white"
+# --- Battery ---
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "🪫"
+
+format = "[$symbol $percentage]($style) "
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+[[battery.display]]
+threshold = 60
+style = "yellow"
+
+[[battery.display]]
+threshold = 100
+style = "green"
+
+# --- Python ---
 
 [python]
 format = 'via [${symbol}${version}](bold green) [(\($virtualenv\))](bold yellow) '
 style = "bold green"
 symbol = " "
+
+# --- Docker ---
+
+[docker_context]
+symbol = "🐳 "
+style = "blue bold"
+format = "[${symbol}$context]($style) "
+
+# --- Rust ---
+[rust]
+symbol = "🦀 "
+style = "bold red"
+format = "[${symbol}${version}](bold red) "
+
+
+# ...
