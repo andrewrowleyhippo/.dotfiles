@@ -1,3 +1,5 @@
 README.md
-LICENSE
+makefile.sh
 .git
+fastfetch.jsonc
+.luarc.json
